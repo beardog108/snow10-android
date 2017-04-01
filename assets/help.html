@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <!-- Copyright (c) 2017 Kevin Froman MIT (expat) license -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name='description' content="Perform Whitespace steganography with encryption and zero width characters">
+    <meta name='author' content='Kevin Froman'>
+    <title>Snow10</title>
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap-theme.min.css">
+    <link rel="stylesheet" href="./font-awesome.min.css">
+    <script src="./jquery.min.js"></script>
+    <script src="./bootstrap.min.js"></script>
+    <script src="./clipboard.min.js"></script>
+    <script src='./aes.min.js'></script>
+    <link rel='stylesheet' href='./theme.min.css'>
+    <style>p{ font-family: serif; }</style>
+
+</head>
+<body>
+<div class='container'>
+
+    <div class='page-header'>
+        <h1 class='center'>Snow10 ☃</h1>
+    </div>
+
+    <p class='center'><a href='./index.html' class='btn btn-primary'>Go Back</a></p>
+
+    <h1>About</h1>
+    <p>Snow10 is a free and open-source web and Android app for converting messages into invisible whitespace characters and back again.</p>
+    <br>
+    <img src='./snow.jpg' alt='snow image'>
+    <br><br>
+    <p><a href='https://github.com/beardog108/snow10/'>It is available on Github</a>.</p>
+    <h1>Encoding Basics</h1>
+    <p>Snow10 messages are meant to be embedded elsewhere, specifically within or by standard blocks of text.</p>
+    <p>Messages with the 'zero width characters' setting work in most places that accept unicode input.</p>
+    <p>Simply enter the message you want to hide <b>(waring: larger messages are more noticeable, and really massive messages may be dangerous/not work)</b></p>
+    <p>You can uncheck 'use zero width characters' but this is more noticeable in some cases and is more likely to be stripped out.</p>
+    <p>Then, enter a decent password in both passwords fields to encrypt your message (or disable encryption, but note that doing so will let anyone read your message.)</p>
+    <p>Press 'encode' and wait for the output window to show, then, press 'copy to clipboard'.</p>
+    <p>You can now paste your message inside Twitter DMs, social media posts, word documents, or elsewhere.</p>
+
+    <h2>Decoding Basics</h2>
+
+    <p>To retrieve a Snow10 message, copy paste it into the text field.</p>
+    <p>It is important to get the full message, & if not using 'zero width characters', then remove any non-message text. <b>This can be difficult, but failing to do so many result in an incomplete or corrupted message.</b></p>
+    <p>If the message is encrypted, enter the password (you only need to enter it into the first field to decode).</p>
+    <p>If the message is not encrypted, uncheck 'use encryption'</p>
+    <p>Then, press decode.</p>
+    <p>If all went right, then you should see the decoded message.</p>
+
+    <h2>Example</h2>
+
+    <p>Here is an example of Snow10's use.</p>
+
+    <input type='text' readonly value='Put this into​‍​​‍​​​​‍‍​​‍​‍​‍‍​‍‍​​​‍‍​‍‍​​​‍‍​‍‍‍‍​​‍​​‍​‍​​‍‍​​‍​​‍​​​​‍‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍‍​‍​​​‍‍​‍​​​​‍‍​‍​​‍​‍‍‍​​‍‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍​‍​​‍​‍‍‍​​‍‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍​​​​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍‍​​‍‍​‍‍​​‍​‍​‍‍​​​‍‍​‍‍‍​​‍​​‍‍​​‍​‍​‍‍‍​‍​​​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍​‍‍​‍​‍‍​​‍​‍​‍‍‍​​‍‍​‍‍‍​​‍‍​‍‍​​​​‍​‍‍​​‍‍‍​‍‍​​‍​‍​​‍​​​​‍ Snow10' onclick='this.select();'>
+    <br><br>
+    <p class='center'><a href='./index.html' class='btn btn-primary'>Go Back</a></p>
+
+</div>
+<footer class='center'>made with <i class='fa fa-heart'></i> by <a href='https://chaoswebs.net/'>Beardog</a></footer>​‍​​‍​​​​‍‍​​‍​‍​‍‍‍‍​​‍​​‍​​‍​‍​​‍‍​​‍​​‍​​​​‍‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍‍‍​​‍​‍‍​‍‍‍‍​‍‍‍​‍​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍​​‍‍​​‍‍​‍‍‍‍​‍‍‍​‍​‍​‍‍​‍‍‍​​‍‍​​‍​​​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍​‍​​‍​‍‍‍​‍​​​​‍​​​​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍​​​‍‍‍​‍‍​‍‍‍‍​‍‍​‍‍‍‍​‍‍​​‍​​​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍​​‍‍​​‍‍​‍‍‍‍​‍‍‍​​‍​​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍‍‍​​‍​‍‍​‍‍‍‍​‍‍‍​‍​‍​​‍​​​​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍​​‍​​​​‍‍​​‍​‍​‍‍‍​​‍​​‍‍​​‍​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍​‍​​‍​‍‍‍​​‍‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍​​​​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍‍​‍​‍​‍‍​‍‍‍​​‍‍​‍​​‍​‍‍​​​‍‍​‍‍​‍‍‍‍​‍‍​​‍​​​‍‍​​‍​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍‍​​‍‍​‍‍​‍‍‍​​‍‍​‍‍‍‍​‍‍‍​‍‍‍​‍‍​‍‍​‍​‍‍​​​​‍​‍‍​‍‍‍​​​‍​​‍​‍​​‍‍​​‍‍​‍​​​​​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​​‍​​‍​‍​‍​​​‍​‍​​‍‍​​‍​​​‍​​‍​‍​​‍‍‍​​‍​​‍‍‍​​​​​‍​​‍​‍​​‍‍‍​​​​​‍‍​​‍‍
+<script src='./main.js'></script>
+</body>
+</html>

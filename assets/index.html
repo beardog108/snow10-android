@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset='utf-8'>
+    <!-- Copyright (c) 2017 Kevin Froman MIT (expat) license -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name='description' content="Perform Whitespace steganography with encryption and zero width characters">
+    <meta name='author' content='Kevin Froman'>
+    <title>Snow10</title>
+	<link rel="stylesheet" href="./bootstrap.min.css">
+	<link rel="stylesheet" href="./bootstrap-theme.min.css">
+	<link rel="stylesheet" href="./font-awesome.min.css">
+	<script src="./jquery.min.js"></script>
+	<script src="./bootstrap.min.js"></script>
+	<script src="./clipboard.min.js"></script>
+	<script src="./jquery.bootstrap-growl.min.js"></script>
+	<script src='./aes.min.js'></script>
+	<link rel='stylesheet' href='./theme.min.css'>
+
+</head>
+<body>
+<div class="modal" id="outputModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title center" id="myModalLabel">Your Text Is Ready!</h4>
+      </div>
+      <div class="modal-body">
+        <br>
+				<pre id='output'></pre>
+        <div class='center'><button class="btn btn-success" data-clipboard-action="copy" data-clipboard-target="#output">Copy to Clipboard</button></div>
+        <div id='copyFeedback' class='center'></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id='modalClose'>Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+	<div class='container'>
+
+		<div class='page-header'>
+			<h1 class='center'>Snow10 ☃</h1>
+		</div>
+		<p class='center'><a href='help.html'>Help! I'm confused!</a></p>
+		<div id='dataArea'>
+			<textarea id='text' placeholder=''></textarea>
+		</div>
+		<div class='center'><button class='btn btn-sm btn-default dataItem' id='clearInputButton'>Clear Input <i class='fa fa-cross'></i></button></div>
+		<br><br>
+		<div class='center'>
+			<label>Use Zero-Width Characters <input type='checkbox' id='useZeroWidthCharacters' checked></label>
+			<br><br>
+			<label>Use Encryption <input type='checkbox' id='useEncrypt'></label>
+			<br><br>
+			<span id='encryptArea'>
+				<input type='password' id='password' placeholder='Encryption password' class='dataItem'>
+				<br>
+				<input type='password' id='confirmPass' placeholder='Confirm password' class='dataItem'>
+				<br>
+			</span>
+			<div class="btn-group" role="group" aria-label="...">
+			  <button type="button" class="btn btn-primary" id="encode">Encode <i class='fa fa-lock'></i></button>
+			  <button type="button" class="btn btn-primary" id="decode">Decode <i class='fa fa-unlock'></i></button>
+			</div>
+			<br>
+		</div>
+	</div>
+	<footer class='center'>made with <i class='fa fa-heart'></i> by <a href='https://chaoswebs.net/'>Beardog</a></footer>​‍​​‍​​​​‍‍​​‍​‍​‍‍‍‍​​‍​​‍​​‍​‍​​‍‍​​‍​​‍​​​​‍‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍‍‍​​‍​‍‍​‍‍‍‍​‍‍‍​‍​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍​​‍‍​​‍‍​‍‍‍‍​‍‍‍​‍​‍​‍‍​‍‍‍​​‍‍​​‍​​​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍​‍​​‍​‍‍‍​‍​​​​‍​​​​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍​​​‍‍‍​‍‍​‍‍‍‍​‍‍​‍‍‍‍​‍‍​​‍​​​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍​​‍‍​​‍‍​‍‍‍‍​‍‍‍​​‍​​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍‍‍​​‍​‍‍​‍‍‍‍​‍‍‍​‍​‍​​‍​​​​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍​​‍​​​​‍‍​​‍​‍​‍‍‍​​‍​​‍‍​​‍​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍​‍​​‍​‍‍‍​​‍‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍​​​​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍‍​‍​‍​‍‍​‍‍‍​​‍‍​‍​​‍​‍‍​​​‍‍​‍‍​‍‍‍‍​‍‍​​‍​​​‍‍​​‍​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​‍‍‍​​‍‍​‍‍​‍‍‍​​‍‍​‍‍‍‍​‍‍‍​‍‍‍​‍‍​‍‍​‍​‍‍​​​​‍​‍‍​‍‍‍​​​‍​​‍​‍​​‍‍​​‍‍​‍​​​​​‍​​‍​​‍​‍​​‍‍​​‍​​​‍‍​​​​​​‍​​‍​‍​‍​​​‍​‍​​‍‍​​‍​​​‍​​‍​‍​​‍‍‍​​‍​​‍‍‍​​​​​‍​​‍​‍​​‍‍‍​​​​​‍‍​​‍‍
+	<script src='./main.js'></script>
+</body>
+</html>
