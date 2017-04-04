@@ -175,6 +175,10 @@ function go(mode) {
             if(split[i] == one || split[i] == zero)
                 sanitized = sanitized + split[i]
 		var output = decodeURIComponent(binToText(sanitized));
+		if (output === 'undefined'){
+			showError('Could not decode message. Maybe there wasn\'t one?');
+			return false;
+		}
 		if ($('#useEncrypt').is(':checked'))
 		{
 			if (verifyPass('decrypt'))
