@@ -33,6 +33,8 @@ body
 	width: 100%;
 	max-width: 100%;
 	min-height: 300px;
+	margin-left: 15%;
+	margin-right: 15%;
 }
 
 #one
