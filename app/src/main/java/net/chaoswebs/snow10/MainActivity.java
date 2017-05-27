@@ -1,6 +1,7 @@
 package net.chaoswebs.snow10;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;

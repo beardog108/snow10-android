@@ -24,6 +24,14 @@ var w_zero = ' ';
 var w_one = '\t';
 
 
+function byteCountt(s) {
+    return encodeURI(s).split(/%..|./).length - 1;
+}
+
+$('#text').on('input', function(){
+   $('#countBytes').text(byteCountt($('#text').val()));
+});
+
 function showError(msg){
 $.bootstrapGrowl(msg, {type: 'danger'})
 }
@@ -197,4 +205,5 @@ function go(mode) {
 
 $('#clearInputButton').click(function(){
 	$('#text').val('');
+	$('#countBytes').text('0');
 });
