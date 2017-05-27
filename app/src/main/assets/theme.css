@@ -24,17 +24,15 @@ body
 
 #dataArea
 {
-	margin-left: 3em;
-	margin-right: 3em;
+	margin-left: 15%;
+	margin-right: 15%;
 }
 
 #text
 {
 	width: 100%;
 	max-width: 100%;
-	min-height: 300px;
-	margin-left: 15%;
-	margin-right: 15%;
+	min-height: 200px;
 }
 
 #one
