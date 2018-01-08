@@ -40,7 +40,12 @@
       <div class="modal-body">
         <br>
 				<pre id='output'></pre>
-        <div class='center'><button class="btn btn-success" data-clipboard-action="copy" data-clipboard-target="#output">Copy to Clipboard</button></div>
+		  <center>
+          <div class="btn-group">
+              <button class="btn btn-primary" id="share">Share</button>
+              <button class="btn btn-success" data-clipboard-action="copy" data-clipboard-target="#output">Copy to Clipboard</button>
+          </div>
+		  </center>
         <div id='copyFeedback' class='center'></div>
       </div>
       <div class="modal-footer">
@@ -62,6 +67,8 @@
 		<br>
 		<p class='center'>Bytes: <span id='countBytes'>0</span></p><br>
 		<div class='center'><button class='btn btn-sm btn-default dataItem' id='clearInputButton'>Clear Input <i class='fa fa-cross'></i></button></div>
+		<br>
+		<div class='center'><label>Text to hide inside: <input type='text' placeholder='Visible non-secret text' id='visibleText'></label></div>
 		<br>
 		<div class='center'>
 			<label>Use Zero-Width Characters <input type='checkbox' id='useZeroWidthCharacters' checked></label>

@@ -1,5 +1,6 @@
 package net.chaoswebs.snow10;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Window;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -25,11 +27,47 @@ public class MainActivity extends AppCompatActivity {
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     */
+/*
+    public class JavascriptInterface{
+        Context mContext;
+
+        JavascriptInterface(Context c) {
+            mContext = c;
+        }
+
+        public void share(String action){
+            Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
+            intent2.setType("text/plain");
+            intent2.putExtra(Intent.EXTRA_TEXT, action );
+            startActivity(Intent.createChooser(intent2, "Share via"));
+        }
+    }
+    */
+
+    public class JavaScriptInterface {
+        Context mContext;
+
+        /** Instantiate the interface and set the context */
+        JavaScriptInterface(Context c) {
+            mContext = c;
+        }
+
+        /** Show a toast from the web page */
+        @JavascriptInterface
+        public void share(String action){
+            Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
+            intent2.setType("text/plain");
+            intent2.putExtra(Intent.EXTRA_TEXT, action );
+            startActivity(Intent.createChooser(intent2, "Share via"));
+        }
+    }
+
 
     private WebView view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
@@ -50,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         view.getSettings().setJavaScriptEnabled(true);
+        view.addJavascriptInterface(new JavaScriptInterface(this), "AndroidFunction");
         view.loadUrl("file:///android_asset/index.html");
         setContentView(view);
     }

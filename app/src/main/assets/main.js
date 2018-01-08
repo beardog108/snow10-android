@@ -12,6 +12,18 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+$('#share').click(function(){
+console.log(AndroidFunction);
+AndroidFunction.share($('#output').val());
+$.bootstrapGrowl('shared', {type: 'success'})
+});
+
+function split2(str, delim) {
+    var parts=str.split(delim);
+    return [parts[0], parts.splice(1,parts.length).join(delim)];
+}
+
+
 var clipboard = new Clipboard('.btn');
 
 var zero = '​';
@@ -173,7 +185,13 @@ function go(mode) {
 		}
 		// convert result to binary
 		output = textToBin(encodeURIComponent(input));
-		$('#output').text(replaceAll(replaceAll(output.toString(), "1", one), "0", zero));
+		output = replaceAll(replaceAll(output.toString(), "1", one), "0", zero);
+		coverText = $('#visibleText').val();
+        coverText = split2(coverText);
+        partOne = coverText[0];
+        partTwo = coverText[1];
+		$('#output').val(partOne + output + partTwo);
+		console.log(partOne + output + partTwo);
 	}
 	else
 	{
