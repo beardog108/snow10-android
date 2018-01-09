@@ -18,6 +18,8 @@ AndroidFunction.share($('#output').val());
 $.bootstrapGrowl('shared', {type: 'success'})
 });
 
+
+
 function split2(str, delim) {
     var parts=str.split(delim);
     return [parts[0], parts.splice(1,parts.length).join(delim)];
@@ -42,6 +44,9 @@ function byteCountt(s) {
 
 $('#text').on('input', function(){
    $('#countBytes').text(byteCountt($('#text').val()));
+   if ($('#countBytes').text() >= 25000){
+   showError('Warning: this message may cause issues due to its size.');
+   }
 });
 
 function showError(msg){
@@ -187,11 +192,17 @@ function go(mode) {
 		output = textToBin(encodeURIComponent(input));
 		output = replaceAll(replaceAll(output.toString(), "1", one), "0", zero);
 		coverText = $('#visibleText').val();
-        coverText = split2(coverText);
-        partOne = coverText[0];
-        partTwo = coverText[1];
-		$('#output').val(partOne + output + partTwo);
-		console.log(partOne + output + partTwo);
+		if (zero == w_zero){
+		    output = coverText + output;
+		}
+		else{
+            coverText = split2(coverText);
+            partOne = coverText[0];
+            partTwo = coverText[1];
+            output = partOne + output + partTwo;
+        }
+		$('#output').text(output);
+		console.log('Output: ' + output);
 	}
 	else
 	{

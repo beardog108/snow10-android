@@ -27,22 +27,6 @@ public class MainActivity extends AppCompatActivity {
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     */
-/*
-    public class JavascriptInterface{
-        Context mContext;
-
-        JavascriptInterface(Context c) {
-            mContext = c;
-        }
-
-        public void share(String action){
-            Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
-            intent2.setType("text/plain");
-            intent2.putExtra(Intent.EXTRA_TEXT, action );
-            startActivity(Intent.createChooser(intent2, "Share via"));
-        }
-    }
-    */
 
     public class JavaScriptInterface {
         Context mContext;
@@ -55,10 +39,11 @@ public class MainActivity extends AppCompatActivity {
         /** Show a toast from the web page */
         @JavascriptInterface
         public void share(String action){
-            Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
-            intent2.setType("text/plain");
-            intent2.putExtra(Intent.EXTRA_TEXT, action );
-            startActivity(Intent.createChooser(intent2, "Share via"));
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, action);
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
         }
     }
 
